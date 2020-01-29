@@ -565,6 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asset: {fileID: 1731677300656253000, guid: 904d522c9f2a4264fa3f80964eb42fcd, type: 3}
+  parentOfAsset: {fileID: 167343554}
   spawnPoint: {fileID: 167343555}
   muzzleFlash: {fileID: 2056460228}
 --- !u!4 &474657938 stripped

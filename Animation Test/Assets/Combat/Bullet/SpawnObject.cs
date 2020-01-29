@@ -15,7 +15,7 @@ public class SpawnObject : MonoBehaviour {
         if (Input.GetButton("Fire1"))
         {
             muzzleFlash.Play();
-            Instantiate(asset, spawnPoint.position, Quaternion.identity);
+            GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
         }
        
     }
