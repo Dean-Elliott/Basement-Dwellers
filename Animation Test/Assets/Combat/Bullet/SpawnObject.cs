@@ -6,7 +6,7 @@ public class SpawnObject : MonoBehaviour {
     //Initializing Variables
     public GameObject asset;
     public Transform spawnPoint;
-
+    public ParticleSystem muzzleFlash;
 
     // Use this for initialization
     void Update()
@@ -14,6 +14,7 @@ public class SpawnObject : MonoBehaviour {
         //Instantiate Game Object
         if (Input.GetButton("Fire1"))
         {
+            muzzleFlash.Play();
             Instantiate(asset, spawnPoint.position, Quaternion.identity);
         }
        
