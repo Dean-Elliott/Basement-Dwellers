@@ -10,13 +10,15 @@ public class ElevatorController : MonoBehaviour
         GoingUp = 1,
         GoingDown = 2
     }
-    ElevatorStates elevatorState;
+    public ElevatorStates elevatorState;
 
     public GameObject elevatorFloor;
 
     public float speed;
 
     public GameObject[] waypoints;
+
+    public int currentWaypoint = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,22 +39,57 @@ public class ElevatorController : MonoBehaviour
                 GoUp();
                 break;
 
+            case ElevatorStates.GoingDown:
+                GoDown();
+                break;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && elevatorState == ElevatorStates.Resting)
         {
-            elevatorState = ElevatorStates.GoingUp;
+            if (Input.GetKeyDown(KeyCode.UpArrow) && currentWaypoint != waypoints.Length - 1)
+            {
+                elevatorState = ElevatorStates.GoingUp;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentWaypoint != 0)
+            {
+                elevatorState = ElevatorStates.GoingDown;
+            }
         }
     }
 
     private void GoUp()
     {
+        if (elevatorFloor.transform.position.y < waypoints[currentWaypoint + 1].transform.position.y)
+        {
+            elevatorFloor.transform.position += elevatorFloor.transform.up * speed * Time.deltaTime;
+        }
+        else
+        {
+            currentWaypoint++;
+            elevatorState = ElevatorStates.Resting;
+        }
+
+        /*
         if (elevatorFloor.transform.position.y < waypoints[1].transform.position.y)
         {
             elevatorFloor.transform.position += elevatorFloor.transform.up * speed * Time.deltaTime;
+        }
+        */
+    }
+
+    private void GoDown()
+    {
+        if (elevatorFloor.transform.position.y > waypoints[currentWaypoint - 1].transform.position.y)
+        {
+            elevatorFloor.transform.position -= elevatorFloor.transform.up * speed * Time.deltaTime;
+        }
+        else
+        {
+            currentWaypoint--;
+            elevatorState = ElevatorStates.Resting;
         }
     }
 }
