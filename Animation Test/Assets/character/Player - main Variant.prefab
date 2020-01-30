@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< Updated upstream
+=======
+--- !u!1 &167343554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167343555}
+  m_Layer: 9
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167343555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167343554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1938, z: 0.135}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5482433428976428679}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes
 --- !u!1 &1814561453
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +173,39 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+<<<<<<< Updated upstream
+=======
+--- !u!114 &1154636110118658769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482433428976204455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb9f2cde706df94189cb316587bf524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  healthMax: 100
+  damage: 5
+--- !u!114 &7568107867965167428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482433428976204455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a80d038c8a77fd4880809fe5709c6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asset: {fileID: 1731677300656253000, guid: 904d522c9f2a4264fa3f80964eb42fcd, type: 3}
+  spawnPoint: {fileID: 167343555}
+  muzzleFlash: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1001 &5482433428976303491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149,7 +215,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100132, guid: ef67fcbebe328764f963f2717ead4ae7, type: 3}
       propertyPath: m_Name
-      value: Player - main
+      value: Player - main Variant
       objectReference: {fileID: 0}
     - target: {fileID: 100132, guid: ef67fcbebe328764f963f2717ead4ae7, type: 3}
       propertyPath: m_IsActive
