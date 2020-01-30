@@ -13,6 +13,7 @@ public class ElevatorController : MonoBehaviour
     private ElevatorStates elevatorState;
 
     public GameObject elevatorFloor;
+    public Light elevatorLight;
 
     public float speed;
 
