@@ -15,6 +15,9 @@ public class ElevatorController : MonoBehaviour
     public GameObject elevatorFloor;
     public Light elevatorLight;
 
+    public Color interactableColour;
+    public Color nonInteractableColour;
+
     public float speed;
 
     public GameObject[] waypoints;
@@ -26,6 +29,15 @@ public class ElevatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (elevatorState == ElevatorStates.Resting)
+        {
+            elevatorLight.color = interactableColour;
+        }
+        else
+        {
+            elevatorLight.color = nonInteractableColour;
+        }
+
         if (elevatorActive == true && elevatorState == ElevatorStates.Resting)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && currentWaypoint != waypoints.Length - 1)
