@@ -10,7 +10,7 @@ public class ElevatorController : MonoBehaviour
         GoingUp = 1,
         GoingDown = 2
     }
-    public ElevatorStates elevatorState;
+    private ElevatorStates elevatorState;
 
     public GameObject elevatorFloor;
 
@@ -20,15 +20,23 @@ public class ElevatorController : MonoBehaviour
 
     public int currentWaypoint = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private bool elevatorActive = false;
 
     // Update is called once per frame
     void Update()
     {
+        if (elevatorActive == true && elevatorState == ElevatorStates.Resting)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) && currentWaypoint != waypoints.Length - 1)
+            {
+                elevatorState = ElevatorStates.GoingUp;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentWaypoint != 0)
+            {
+                elevatorState = ElevatorStates.GoingDown;
+            }
+        }
+
         switch (elevatorState)
         {
             case ElevatorStates.Resting:
@@ -45,18 +53,19 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && elevatorState == ElevatorStates.Resting)
+        if (other.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && currentWaypoint != waypoints.Length - 1)
-            {
-                elevatorState = ElevatorStates.GoingUp;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentWaypoint != 0)
-            {
-                elevatorState = ElevatorStates.GoingDown;
-            }
+            elevatorActive = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            elevatorActive = false;
         }
     }
 
@@ -68,16 +77,10 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
+            elevatorFloor.transform.position = waypoints[currentWaypoint + 1].transform.position;
             currentWaypoint++;
             elevatorState = ElevatorStates.Resting;
         }
-
-        /*
-        if (elevatorFloor.transform.position.y < waypoints[1].transform.position.y)
-        {
-            elevatorFloor.transform.position += elevatorFloor.transform.up * speed * Time.deltaTime;
-        }
-        */
     }
 
     private void GoDown()
@@ -88,6 +91,7 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
+            elevatorFloor.transform.position = waypoints[currentWaypoint - 1].transform.position;
             currentWaypoint--;
             elevatorState = ElevatorStates.Resting;
         }
