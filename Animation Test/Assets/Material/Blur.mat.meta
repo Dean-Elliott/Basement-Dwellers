@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Animation Test/Assets/Material/Blur.mat.meta
-guid: 385870c5e1aaf1644a9c6eac83caa1d0
-=======
-guid: dcb3fc840c86d054eab9603edc5679c9
->>>>>>> DrewElevator:Animation Test/Assets/Chopping Mall 2 (Unofficial) Assets/Materials/mat_Glass.mat.meta
+guid: a1a085e37779d81438524a7aedbfa38f
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 2100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
