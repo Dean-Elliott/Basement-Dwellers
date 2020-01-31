@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ElevatorController : MonoBehaviour
 {
+    private AudioSource audioSourceComponent;
+
     public enum ElevatorStates
     {
         Resting = 0,
@@ -14,17 +16,24 @@ public class ElevatorController : MonoBehaviour
 
     public GameObject elevatorFloor;
     public Light elevatorLight;
+    public AudioClip dingSound;
 
     public Color interactableColour;
     public Color nonInteractableColour;
 
+    [Range(0.1f, 100.0f)]
     public float speed;
 
     public GameObject[] waypoints;
 
-    public int currentWaypoint = 0;
+    private int currentWaypoint = 0;
 
     private bool elevatorActive = false;
+
+    private void Start()
+    {
+        audioSourceComponent = gameObject.GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -90,6 +99,7 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
+            audioSourceComponent.PlayOneShot(dingSound);
             elevatorFloor.transform.position = waypoints[currentWaypoint + 1].transform.position;
             currentWaypoint++;
             elevatorState = ElevatorStates.Resting;
@@ -104,6 +114,7 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
+            audioSourceComponent.PlayOneShot(dingSound);
             elevatorFloor.transform.position = waypoints[currentWaypoint - 1].transform.position;
             currentWaypoint--;
             elevatorState = ElevatorStates.Resting;
