@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: dd3abe684eed7cb45839b0b79e0a3196
+<<<<<<< HEAD:Animation Test/Assets/Chopping Mall 2 (Unofficial) Assets/Prefabs/Smoke Layer Effect.prefab.meta
+guid: 9ed1e5858df4be54fbbb8672a73f372f
+PrefabImporter:
+=======
+guid: 4a4eafbbf24fc164fb96624370b2b247
 DefaultImporter:
+>>>>>>> Jackson-EnemyUpdate:Animation Test/Assets/Scenes/New Test.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
