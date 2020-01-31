@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-
+    public string TargetTag;
     private GameObject Target;
     private bool SeeTarget;
     public GameObject Bspawner;
@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == TargetTag)
         {
 
             Target = other.gameObject;
