@@ -12,7 +12,7 @@ public class SpawnObject : MonoBehaviour {
     void Update()
     {
         //Instantiate Game Object
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1") && PauseMenu.GameIsPaused == false)
         {
             muzzleFlash.Play();
             GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
