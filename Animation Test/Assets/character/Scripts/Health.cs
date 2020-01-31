@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public float health;
     public float healthMax;
     public float damage;
-
+    public ParticleSystem blood;
 
     // Update is called once per frame
     void Update()
@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            blood.Play();
             health -= damage;
         }
     }
