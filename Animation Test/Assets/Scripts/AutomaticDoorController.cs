@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AutomaticDoorController : MonoBehaviour
 {
-    public int boink = 10000;
     public enum DoorStates
     {
         Resting = 0,
@@ -19,8 +18,6 @@ public class AutomaticDoorController : MonoBehaviour
     public float speed;
     public float maximumSeperationDistance;
     public float minimumSeperationDistance;
-
-    public int earBalls;
 
     // Start is called before the first frame update
     void Start()
