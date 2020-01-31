@@ -5,7 +5,12 @@ using UnityEngine.AI;
 
 public class TestEnemyController : MonoBehaviour
 {
+    private AudioSource audioSourceComponent;
+
     public static int enemiesInScene;
+
+    private bool messageHasPlayed = false;
+    public AudioClip killMessage;
 
     public enum EnemyStates
     {
@@ -37,6 +42,8 @@ public class TestEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSourceComponent = gameObject.GetComponent<AudioSource>();
+
         navMeshAgentComponent = gameObject.GetComponent<NavMeshAgent>();
         healthComponent = gameObject.GetComponent<Health>();
 
@@ -104,11 +111,18 @@ public class TestEnemyController : MonoBehaviour
 
         if (enemyHealthComponent.health <= 0)
         {
+            if (messageHasPlayed == false)
+            {
+                audioSourceComponent.PlayOneShot(killMessage);
+                messageHasPlayed = true;
+            }
+
             if (waypoints.Count > 1)
             {
                 waypoints.RemoveAt(currentWaypoint);
                 GoToNextWaypoint();
                 enemyState = EnemyStates.Travelling;
+                messageHasPlayed = false;
             }
             else
             {
