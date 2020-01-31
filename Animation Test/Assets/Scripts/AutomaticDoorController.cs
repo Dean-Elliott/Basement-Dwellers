@@ -19,6 +19,8 @@ public class AutomaticDoorController : MonoBehaviour
     public float maximumSeperationDistance;
     public float minimumSeperationDistance;
 
+    public int oink;
+
     // Start is called before the first frame update
     void Start()
     {
