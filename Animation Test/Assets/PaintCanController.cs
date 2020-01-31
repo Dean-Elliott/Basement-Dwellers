@@ -5,16 +5,31 @@ using UnityEngine;
 public class PaintCanController : MonoBehaviour
 {
     public AudioClip[] metalHitSounds;
-    
+
+    AudioSource audioSourceComponent;
+
+    public float delayBeforeSoundActivation;
+
+    private bool soundActivated = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSourceComponent = gameObject.GetComponent<AudioSource>();
+        StartCoroutine(DelaySoundActivation(delayBeforeSoundActivation));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DelaySoundActivation(float delayTime)
     {
-        
+        yield return new WaitForSeconds(delayTime);
+        soundActivated = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (soundActivated == true)
+        {
+            audioSourceComponent.PlayOneShot(metalHitSounds[Random.Range(0, metalHitSounds.Length)]);
+        }
     }
 }
