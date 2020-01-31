@@ -274,9 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088bfce918b80bd47a40e544fa670aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetTag: Player
   Bspawner: {fileID: 1927829836740794530}
   Projectile: {fileID: 1731677300656253000, guid: 904d522c9f2a4264fa3f80964eb42fcd,
     type: 3}
+  Defaultlook: {fileID: 1927829836082508302}
+  FireRate: 2
 --- !u!1 &1927829837525327671
 GameObject:
   m_ObjectHideFlags: 0
