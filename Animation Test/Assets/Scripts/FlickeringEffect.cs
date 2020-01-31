@@ -5,12 +5,16 @@ using Aura2API;
 
 public class FlickeringEffect : MonoBehaviour
 {
+    private AudioSource audioSourceComponent;
+
     public enum FlickerStates
     {
         ColourA = 0,
         ColourB = 1
     }
     private FlickerStates flickerState;
+
+    public AudioClip buzz;
 
     public AuraVolume auraVolumeComponent;
 
@@ -25,9 +29,13 @@ public class FlickeringEffect : MonoBehaviour
     public Color colourA;
     public Color colourB;
 
+    public bool playBuzzSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSourceComponent = gameObject.GetComponent<AudioSource>();
+
         flickerState = FlickerStates.ColourA;
         auraVolumeComponent.lightInjection.color = colourA;
 
@@ -56,6 +64,10 @@ public class FlickeringEffect : MonoBehaviour
 
         if (elapsingColourBDuration <= 0.0f)
         {
+            if (playBuzzSoundEffect == true)
+            {
+                audioSourceComponent.PlayOneShot(buzz);
+            }
             auraVolumeComponent.lightInjection.color = colourA;
             flickerState = FlickerStates.ColourA;
             elapsingColourBDuration = Random.Range(minimumColourBDuration, maximumColourBDuration);
