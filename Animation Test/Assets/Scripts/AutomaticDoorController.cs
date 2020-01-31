@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AutomaticDoorController : MonoBehaviour
 {
+    public int boink = 10000;
     public enum DoorStates
     {
         Resting = 0,
