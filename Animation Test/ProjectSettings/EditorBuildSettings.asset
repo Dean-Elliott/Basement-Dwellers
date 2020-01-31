@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level Test.unity
     guid: 481518d2ffd7aac478e3335d690ecb9e
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 04cfb3a8a2a8c5c498a389ee56bcc48b
+    path: Assets/Scenes/Mall Level.unity
+    guid: 279f8238847051e40bc57c9e68733128
   - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 4e70492861e77354c8c62894903b0e6d
