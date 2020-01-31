@@ -43,5 +43,9 @@ public class Projectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "Geo")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
