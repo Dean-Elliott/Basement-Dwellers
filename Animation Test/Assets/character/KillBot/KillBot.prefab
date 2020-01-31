@@ -181,9 +181,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4639411819033019949}
   - component: {fileID: 8519079455386285113}
+  - component: {fileID: 8459498497558522853}
   - component: {fileID: 8459498497558522854}
   - component: {fileID: 1506614185}
-  - component: {fileID: 2699047358780953384}
   m_Layer: 0
   m_Name: KillBot
   m_TagString: Target
@@ -224,6 +224,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8459498497558522853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519079455386285118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240bdf8e17963d841ac897b464d23ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 70
+  wanderTimer: 10
 --- !u!195 &8459498497558522854
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -259,23 +273,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.030034423, y: 0.032064803, z: 0.035571314}
   m_Center: {x: -0.00078216795, y: 0.016032401, z: -0.000005453825}
---- !u!114 &2699047358780953384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8519079455386285118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791bc19f169abca49a9b1d15ee5e7d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyState: 0
-  waypoints: []
-  attackDamage: 0
-  attacksPerSecond: 0
-  minimumAttackDistance: 0
 --- !u!1001 &243181945047912977
 PrefabInstance:
   m_ObjectHideFlags: 0
