@@ -31,8 +31,9 @@ public class KeyCollection : MonoBehaviour
             key.SetActive(false);
         }
 
-        if (other.gameObject.tag == "Lock" && hasKey == true && Input.GetButtonDown("E"))
+        if (other.gameObject.tag == "Lock" && hasKey == true)
         {
+            Debug.Log("its working but not");
             door.SetActive(false);
         }
     }
