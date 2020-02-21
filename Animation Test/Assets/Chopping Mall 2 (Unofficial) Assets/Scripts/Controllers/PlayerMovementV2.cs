@@ -77,6 +77,7 @@ public class PlayerMovementV2 : MonoBehaviour
     private void Awake()
     {
         //setting values
+        
         normalHitBox.SetActive(true);
         CrouchHitBox.SetActive(false);
         movementSpeed = TopSpeed;

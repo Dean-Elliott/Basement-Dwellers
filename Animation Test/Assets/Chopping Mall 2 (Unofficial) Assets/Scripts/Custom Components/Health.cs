@@ -8,12 +8,14 @@ public class Health : MonoBehaviour
     public float healthMax;
     public float damage;
     public bool Dead = false;
-   
+    public Animator animator;
     public ParticleSystem blood;
     private Projectile Bullet;
+    private Player PM;
     private void Start()
     {
         health = healthMax;
+        PM = gameObject.GetComponent<Player>();
     }
     // Update is called once per frame
     void Update()
@@ -50,6 +52,9 @@ public class Health : MonoBehaviour
             if(this.gameObject.tag == "Player")
             {
                 Dead = true;
+                animator.SetBool("IsDead", Dead);
+                PM.CanMove = false;
+                PM.CanLookAround = false;
             }
             
         }
