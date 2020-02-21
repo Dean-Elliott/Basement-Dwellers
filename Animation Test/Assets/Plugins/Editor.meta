@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Animation Test/Assets/Plugins/Editor.meta
 guid: 8b030aa11a43de54bbe7b26d07e9ec46
+=======
+guid: b84a7272c6afdda4eb1a5908390599fd
+>>>>>>> Stashed changes:Animation Test/Assets/Plugins.meta
+=======
+guid: 8b030aa11a43de54bbe7b26d07e9ec46
+>>>>>>> Stashed changes
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
