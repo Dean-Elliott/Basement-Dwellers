@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bspawner: {fileID: 3029450852546652821}
-  Projectile: {fileID: 61016013213648885, guid: 57d449239367e544291af5f59236179e,
+  Projectile: {fileID: 8142924719089672159, guid: 205a9999f34edcd439e1239febddd368,
     type: 3}
   FireRate: 40
 --- !u!1 &632260627542916137
