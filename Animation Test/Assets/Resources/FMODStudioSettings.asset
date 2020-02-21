@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
+<<<<<<< Updated upstream
   sourceProjectPath: C:\Users\Firaa\Documents\FMOD_Chopping_Mall\Chopping_Mall_Sounds\Chopping_Mall_Sounds.fspro
   SourceProjectPathUnformatted: C:\Users\Firaa\Documents\FMOD_Chopping_Mall\Chopping_Mall_Sounds\Chopping_Mall_Sounds.fspro
   SourceBankPathUnformatted: C:\Users\Firaa\Documents\FMOD_Chopping_Mall\Chopping_Mall_Sounds\Build
+=======
+  sourceProjectPath: 
+  SourceProjectPathUnformatted: 
+  SourceBankPathUnformatted: 
+>>>>>>> Stashed changes
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -45,9 +51,13 @@ MonoBehaviour:
     Value: 1
   - Platform: 2
     Value: 0
+<<<<<<< Updated upstream
   BankDirectorySettings:
   - Platform: 2
     Value: Desktop
+=======
+  BankDirectorySettings: []
+>>>>>>> Stashed changes
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
@@ -59,7 +69,11 @@ MonoBehaviour:
   - Platform: 2
     Value: 32
   Plugins: []
+<<<<<<< Updated upstream
   MasterBanks:
   - Master Bank
+=======
+  MasterBanks: []
+>>>>>>> Stashed changes
   Banks: []
   LiveUpdatePort: 9264
