@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 07f7bd1e1db6f2d4ea36069d261af32d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: ScreenerW01-Regular
+  fontNames:
+  - ScreenerW01-Regular
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5e2a3bd19a8a5c34b877c6607aac7e60, type: 3}
+  - {fileID: 12800000, guid: 9cf54e2a9c6ce8741afccdac5c442f46, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
