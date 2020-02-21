@@ -10,7 +10,6 @@ public class SpawnObject : MonoBehaviour {
     public Transform spawnPoint;
     public ParticleSystem muzzleFlash;
     private int currentAmmo;
-    public AudioSource gunShot;
     public int maxAmmo = 10;
     public float reloadTime = 4f;
     private bool isReloading = false;
@@ -46,7 +45,6 @@ public class SpawnObject : MonoBehaviour {
         {
             
             muzzleFlash.Play();
-            gunShot.Play();
             GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
             currentAmmo--;
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
