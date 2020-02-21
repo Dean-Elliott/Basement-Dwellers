@@ -126,7 +126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42898
+  m_Name: pb_Mesh47410
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -672,7 +672,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42916
+  m_Name: pb_Mesh47428
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -835,7 +835,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42880
+  m_Name: pb_Mesh47392
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1899,6 +1899,12 @@ PrefabInstance:
       propertyPath: CameraOrient
       value: 
       objectReference: {fileID: 1326512423}
+    - target: {fileID: 4677673096249488510, guid: 34cebf9d3f09c044593cf30603db028f,
+        type: 3}
+      propertyPath: Projectile
+      value: 
+      objectReference: {fileID: 8142924719089672159, guid: 205a9999f34edcd439e1239febddd368,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34cebf9d3f09c044593cf30603db028f, type: 3}
 --- !u!1 &5124276747944814896 stripped
@@ -1979,5 +1985,15 @@ PrefabInstance:
       propertyPath: Owner
       value: 
       objectReference: {fileID: 5124276747944814896}
+    - target: {fileID: 6630023560647406131, guid: 831acdbc303fe6e4ea5cd6a818b3da84,
+        type: 3}
+      propertyPath: Offset.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630023560647406131, guid: 831acdbc303fe6e4ea5cd6a818b3da84,
+        type: 3}
+      propertyPath: Offset.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 831acdbc303fe6e4ea5cd6a818b3da84, type: 3}
