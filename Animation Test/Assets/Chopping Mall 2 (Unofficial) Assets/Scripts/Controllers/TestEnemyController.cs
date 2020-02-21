@@ -50,13 +50,17 @@ public class TestEnemyController : MonoBehaviour
         timeBetweenAttacks = 1f / attacksPerSecond;
         elapsingTimeBetweenAttacks = timeBetweenAttacks;
 
-        navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
+        if (waypoints[0] != null)
+            navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Vector3.Distance(transform.position, waypoints[currentWaypoint].transform.position));
+        if (waypoints[0] == null)
+        {
+            waypoints[0] = GameObject.FindGameObjectWithTag("Player");
+        }
 
         if (waypoints[currentWaypoint] != null)
         {
