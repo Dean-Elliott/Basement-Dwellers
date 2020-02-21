@@ -16,6 +16,7 @@ public class camerafollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // set its position to the players plus an offset
         transform.position = Owner.transform.position + Offset;
     }
 }

@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 1927829837017101529}
   - component: {fileID: 1927829837017101530}
   - component: {fileID: 1927829837017101531}
-  - component: {fileID: 1927829837017101524}
+  - component: {fileID: 1337249039}
   m_Layer: 0
   m_Name: RobotHead
   m_TagString: Untagged
@@ -262,7 +262,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: -0.0014888739, z: 0.0039014434}
---- !u!114 &1927829837017101524
+--- !u!114 &1337249039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,15 +271,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1927829837017101526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088bfce918b80bd47a40e544fa670aa1, type: 3}
+  m_Script: {fileID: 11500000, guid: c9204a335a7d3f14ab3f521208ad2152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetTag: Player
   Bspawner: {fileID: 1927829836740794530}
   Projectile: {fileID: 1731677300656253000, guid: 904d522c9f2a4264fa3f80964eb42fcd,
     type: 3}
   Defaultlook: {fileID: 1927829836082508302}
-  FireRate: 2
+  TargetString: Player
+  FireRate: 20
 --- !u!1 &1927829837525327671
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,6 +76,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void Awake()
     {
+        //setting values
         normalHitBox.SetActive(true);
         CrouchHitBox.SetActive(false);
         movementSpeed = TopSpeed;
@@ -129,11 +130,10 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             move.Normalize();
         }
-        // rotate towards the mouse
-        //Rotate();
         // Check for ground (Main for animations, but also for jump limits)
         Move(move);
-        //JumpPressed();
+
+        //Is the player crouched?
         if (UnityEngine.Input.GetButtonDown("Fire3"))
         {
             IsCrouch = !IsCrouch;
@@ -166,14 +166,11 @@ public class PlayerMovementV2 : MonoBehaviour
         }
         animator.SetBool("IsGrounded", IsGrounded);
 
-        // crouching
-
     }
 
 
 
-    // Animation content start
-
+    // Animation content methods actually called
     void Move(Vector3 move)
     {
         if(move.magnitude > 1)
@@ -192,6 +189,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     void ConverMoveInput()
     {
+        // converting the movement inputs to be reltive to the camera for the animations
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
         turnAmount = localMove.x;
         forwardAmount = localMove.z;
@@ -214,6 +212,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     public void PerformJump()
     {
+        //player prefroms the jump
         IsGrounded = false;
         Vector3 velocity = Rigidbody.velocity;
         velocity.y = Mathf.Sqrt(2f * gravity * jumpHeight);
@@ -222,6 +221,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void ApplyGravity()
     {
+        // apply gravity to the player
         Rigidbody.AddForce(Vector3.down * gravity);
     }
 
@@ -231,7 +231,7 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             float angle = Vector3.Angle(contact.normal, Vector3.up);
 
-            //tis the slope angle
+            //this is the slope angle
             if (angle <= 45f)
             {
                 IsGrounded = true;
@@ -239,27 +239,4 @@ public class PlayerMovementV2 : MonoBehaviour
             }
         }
     }
-    void Rotate()
-    {
-
-        RaycastHit _hit;
-        Ray _ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
-        
-        if (Physics.Raycast(_ray ,out _hit))
-        {
-            lookPos = _hit.point;
-        }
-        
-
-        Vector3 lookDir = lookPos - transform.position;
-        lookDir.y = 0;
-
-        transform.LookAt(transform.position + lookDir, Vector3.up);
-
-    }
-
-    
-
-    
-    
 }

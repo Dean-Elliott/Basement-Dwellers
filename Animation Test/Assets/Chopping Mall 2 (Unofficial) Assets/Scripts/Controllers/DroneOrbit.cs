@@ -47,12 +47,14 @@ public class DroneOrbit : MonoBehaviour
 
     void TargetChooser()
     {
-
+        // raycast so the target changes color when the mouse is hovering over it
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         foreach (RaycastHit hit in Physics.RaycastAll(ray))
         {
+            // if its a player or target
             if (hit.transform.gameObject.tag == "Target" || hit.transform.gameObject.tag == "Player")
             {
+                // if a target, tell it to turn red
                 if(hit.transform.gameObject.tag == "Target")
                 {
 
@@ -60,7 +62,7 @@ public class DroneOrbit : MonoBehaviour
                 }
 
 
-
+                // if its clicked make the drone orbit it
                 if (Input.GetButtonDown("Fire1"))
                 {
                     Debug.Log("Hit this thing:" + hit.transform.gameObject.name);

@@ -21,10 +21,12 @@ public class TargetColorBehavior : MonoBehaviour
         
         if (Targeted == false)
         {
+            // If its targetted, turn it red
             GetComponent<Renderer>().material.color = DefualtColor;
         }
         if (Targeted == true)
         {
+            // If its not targetted, turn it a default color
             GetComponent<Renderer>().material.color = TargetSelect;
         }
 
@@ -33,6 +35,7 @@ public class TargetColorBehavior : MonoBehaviour
 
     public void SetTargetColor()
     {
+        // A method called by other scripts
         Targeted = true;
     }
 }

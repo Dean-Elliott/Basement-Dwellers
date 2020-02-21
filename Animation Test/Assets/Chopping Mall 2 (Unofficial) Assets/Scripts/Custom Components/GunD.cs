@@ -10,7 +10,7 @@ public class GunD : MonoBehaviour
     public GameObject Bspawner;
     public GameObject Projectile;
     public GameObject Defaultlook;
-    public float PsensorLength;
+    public string TargetString;
     public float FireRate;
     private float LastShot;
     
@@ -27,17 +27,18 @@ public class GunD : MonoBehaviour
     {
         if (SeeTarget == false)
         {
+            // set the target to the Defualt look
             transform.LookAt(Defaultlook.transform);
         }
 
         
     }
 
-
+    //change the target, look at the target, and fire the weapon
     private void OnTriggerStay(Collider other)
     {
         
-        if (other.gameObject.tag == "Target")
+        if (other.gameObject.tag == TargetString)
         {
             
             Target = other.gameObject;
@@ -49,12 +50,13 @@ public class GunD : MonoBehaviour
         }
         
     }
-
+    // set the seetarget boolean as false
     private void OnTriggerExit(Collider other)
     {
         SeeTarget = false;
     }
 
+    // fire the weapon at specific intervals 
     void Fire()
     {
         if(Time.time > FireRate + LastShot)
