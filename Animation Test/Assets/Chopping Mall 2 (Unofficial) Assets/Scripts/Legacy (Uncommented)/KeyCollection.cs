@@ -17,7 +17,8 @@ public class KeyCollection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hasKey == false)
+        //if the player doesnt have the key set the game object to active (shows up)
+        if (hasKey == false)
         {
             key.SetActive(true);
         }
@@ -25,12 +26,13 @@ public class KeyCollection : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        //if the player collides with the key set haskey to true and set the keys active to false so it disapears
         if(other.gameObject.tag == "Key")
         {
             hasKey = true;
             key.SetActive(false);
         }
-
+        //if the player goes infront of the lock area and they have the key open the door
         if (other.gameObject.tag == "Lock" && hasKey == true)
         {
             Debug.Log("its working but not");

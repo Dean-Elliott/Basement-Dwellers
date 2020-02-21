@@ -19,12 +19,13 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-
+    //load the next scene
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    //start the animation for screen transitions and then load the next scene
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
