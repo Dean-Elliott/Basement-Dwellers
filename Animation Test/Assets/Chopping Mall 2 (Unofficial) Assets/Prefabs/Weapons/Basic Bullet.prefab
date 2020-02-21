@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6390460055094450010}
   m_Layer: 0
   m_Name: Basic Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6390460055094450010
 MonoBehaviour:
@@ -108,4 +108,5 @@ MonoBehaviour:
   speed: 20
   fireRate: 0
   LifeTime: 3
+  Damage: 10
   CurrentTime: 0
