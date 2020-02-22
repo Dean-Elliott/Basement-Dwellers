@@ -5,13 +5,18 @@ using UnityEngine.AI;
 
 public class TestEnemyController : MonoBehaviour
 {
+    // Initialize all referenced components
     private AudioSource audioSourceComponent;
+    private NavMeshAgent navMeshAgentComponent;
+    private Health healthComponent;
 
+    // Count all enemies in the scene
     public static int enemiesInScene;
 
     private bool messageHasPlayed = false;
     public AudioClip killMessage;
 
+    // Set up and initialize state enumerator
     public enum EnemyStates
     {
         Travelling = 0,
@@ -20,10 +25,9 @@ public class TestEnemyController : MonoBehaviour
     }
     public EnemyStates enemyState;
 
+    // Initialize all variables
     public List<GameObject> waypoints = new List<GameObject>();
     private int currentWaypoint = 0;
-    private NavMeshAgent navMeshAgentComponent;
-    private Health healthComponent;
 
     private Health enemyHealthComponent;
 
@@ -36,27 +40,33 @@ public class TestEnemyController : MonoBehaviour
 
     private void Awake()
     {
+        // Increment the number of enemies in the scene on spawn
         enemiesInScene++;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        // Assign component variables to their corresponding component
         audioSourceComponent = gameObject.GetComponent<AudioSource>();
-
         navMeshAgentComponent = gameObject.GetComponent<NavMeshAgent>();
         healthComponent = gameObject.GetComponent<Health>();
 
+        // Set timers
         timeBetweenAttacks = 1f / attacksPerSecond;
         elapsingTimeBetweenAttacks = timeBetweenAttacks;
 
+        
         if (waypoints[0] != null)
+        {
             navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If there are no waypoints set, target the player by default
         if (waypoints[0] == null)
         {
             waypoints[0] = GameObject.FindGameObjectWithTag("Player");
@@ -74,6 +84,7 @@ public class TestEnemyController : MonoBehaviour
             }
         }
 
+        // Switch between enemy states depending on state enumerator
         switch (enemyState)
         {
             case EnemyStates.Travelling:
@@ -82,10 +93,12 @@ public class TestEnemyController : MonoBehaviour
                 break;
 
             case EnemyStates.Attacking:
+                // Attack the selected target
                 AttackTarget();
                 break;
 
             case EnemyStates.Stopped:
+                // Stop moving
                 navMeshAgentComponent.isStopped = true;
                 break;
         }
@@ -93,12 +106,14 @@ public class TestEnemyController : MonoBehaviour
 
     }
 
+    // Travel towards the player (uses a coroutine so as not to set the destination every frame)
     IEnumerator Travel()
     {
         navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
         yield return new WaitForSeconds(0.1f);
     }
-
+    
+    // Attack target at set rate and damage value
     private void AttackTarget()
     {
         StopCoroutine(Travel());
@@ -141,6 +156,7 @@ public class TestEnemyController : MonoBehaviour
         }
     }
 
+    // Set the next waypoint in the waypoints array
     private void GoToNextWaypoint()
     {
         navMeshAgentComponent.isStopped = false;
@@ -157,6 +173,7 @@ public class TestEnemyController : MonoBehaviour
         navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
     }
 
+    // If this game object collides with a projectile, reduce health
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile")
@@ -165,11 +182,13 @@ public class TestEnemyController : MonoBehaviour
         }
     }
 
+    // If health is depleted, destroy this game object
     public void OnHealthDepleted()
     {
         Destroy(gameObject);
     }
 
+    // Decrement total enemies in scene when this game object is destroyed
     private void OnDestroy()
     {
         enemiesInScene--;
