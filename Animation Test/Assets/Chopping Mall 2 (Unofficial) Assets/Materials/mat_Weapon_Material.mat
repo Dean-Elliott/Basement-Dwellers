@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Cloth
+  m_Name: mat_Weapon_Material
   m_Shader: {fileID: 4800000, guid: 6295d2b84fe712e45b2c8cc51c5be4c4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -73,7 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseScale: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 0.4056604, g: 0.2622565, b: 0.18752226, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OccludeColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}

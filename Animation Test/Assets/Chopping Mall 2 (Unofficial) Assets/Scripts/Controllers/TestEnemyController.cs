@@ -14,7 +14,8 @@ public class TestEnemyController : MonoBehaviour
     public static int enemiesInScene;
 
     private bool messageHasPlayed = false;
-    public AudioClip killMessage;
+    [SerializeField]
+    private AudioClip killMessage;
 
     // Set up and initialize state enumerator
     public enum EnemyStates
@@ -26,14 +27,18 @@ public class TestEnemyController : MonoBehaviour
     public EnemyStates enemyState;
 
     // Initialize all variables
-    public List<GameObject> waypoints = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> waypoints = new List<GameObject>();
     private int currentWaypoint = 0;
 
     private Health enemyHealthComponent;
 
-    public int attackDamage;
-    public float attacksPerSecond;
-    public float minimumAttackDistance;
+    [SerializeField]
+    private int attackDamage;
+    [SerializeField]
+    private float attacksPerSecond;
+    [SerializeField]
+    private float minimumAttackDistance;
 
     private float timeBetweenAttacks;
     private float elapsingTimeBetweenAttacks;

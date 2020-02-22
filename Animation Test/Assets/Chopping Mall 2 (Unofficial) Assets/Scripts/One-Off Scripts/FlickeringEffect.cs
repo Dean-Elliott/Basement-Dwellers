@@ -7,7 +7,8 @@ public class FlickeringEffect : MonoBehaviour
 {
     // Initialize components
     private AudioSource audioSourceComponent;
-    public AuraVolume auraVolumeComponent;
+    [SerializeField]
+    private AuraVolume auraVolumeComponent;
 
     // Set up and initialize state enumerator
     public enum FlickerStates
@@ -18,20 +19,27 @@ public class FlickeringEffect : MonoBehaviour
     private FlickerStates flickerState;
 
     // Initialize all variables
-    public AudioClip buzz;    
+    [SerializeField]
+    private AudioClip buzz;    
 
-    public float minimumColourADuration;
-    public float maximumColourADuration;
+    [SerializeField]
+    private float minimumColourADuration;
+    [SerializeField]
+    private float maximumColourADuration;
     private float elapsingColourADuration;
 
-    public float minimumColourBDuration;
-    public float maximumColourBDuration;
+    [SerializeField]
+    private float minimumColourBDuration;
+    [SerializeField]
+    private float maximumColourBDuration;
     private float elapsingColourBDuration;
 
-    public Color colourA;
-    public Color colourB;
+    [SerializeField]
+    private Color colourA;
+    [SerializeField]
+    private Color colourB;
 
-    public bool isPlayingBuzzSound;
+    private bool isPlayingBuzzSound;
 
     // Start is called before the first frame update
     void Start()

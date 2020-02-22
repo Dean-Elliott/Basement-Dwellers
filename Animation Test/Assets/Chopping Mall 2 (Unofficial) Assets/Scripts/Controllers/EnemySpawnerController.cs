@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemySpawnerController : MonoBehaviour
 {
     // Initialize all variables. Serialize where appropriate
-    public GameObject enemy;
+    [SerializeField]
+    private GameObject enemy;
 
     [SerializeField]
     private int maximumActiveEnemies;

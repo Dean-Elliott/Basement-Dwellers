@@ -8,8 +8,10 @@ public class PaintCanController : MonoBehaviour
     private AudioSource audioSourceComponent;
 
     // Initialize variables
-    public AudioClip[] metalHitSounds;
-    public float delayBeforeSoundActivation;
+    [SerializeField]
+    private AudioClip[] metalHitSounds;
+    [SerializeField]
+    private float delayBeforeSoundActivation;
     private bool soundActivated = false;
 
     // Start is called before the first frame update

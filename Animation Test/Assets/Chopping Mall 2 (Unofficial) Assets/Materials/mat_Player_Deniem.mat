@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Robot_DarkMetal
-  m_Shader: {fileID: 4800000, guid: 0a960e576f8619d459159d0f6e227a5d, type: 3}
+  m_Name: mat_Player_Deniem
+  m_Shader: {fileID: 4800000, guid: 6295d2b84fe712e45b2c8cc51c5be4c4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.26321647, g: 0.27745727, b: 0.3301887, a: 1}
+    - _Color: {r: 0.16019937, g: 0.2669674, b: 0.5660378, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OccludeColor: {r: 0.6603774, g: 0.29592383, b: 0.32441604, a: 1}
+    - _OccludeColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}

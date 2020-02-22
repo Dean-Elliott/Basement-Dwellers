@@ -6,7 +6,7 @@ public class ElevatorController : MonoBehaviour
 {
     // Initialize all referenced components
     private AudioSource audioSourceComponent;
-    public Light elevatorLightComponent;    
+    public Light elevatorLightComponent;
 
     // Set up and initialize state enumerator
     public enum ElevatorStates
@@ -18,17 +18,23 @@ public class ElevatorController : MonoBehaviour
     private ElevatorStates elevatorState;
 
     // Initialize all variables
-    public GameObject elevatorFloor;
+    [SerializeField]
+    private GameObject elevatorFloor;
 
-    public AudioClip dingSound;
+    [SerializeField]
+    private AudioClip dingSound;
 
-    public Color interactableColour;
-    public Color nonInteractableColour;
+    [SerializeField]
+    private Color interactableColour;
+    [SerializeField]
+    private Color nonInteractableColour;
 
     [Range(0.1f, 100.0f)]
-    public float speed;
+    [SerializeField]
+    private float speed;
 
-    public GameObject[] waypoints;
+    [SerializeField]
+    private GameObject[] waypoints;
 
     private int currentWaypoint = 0;
 
