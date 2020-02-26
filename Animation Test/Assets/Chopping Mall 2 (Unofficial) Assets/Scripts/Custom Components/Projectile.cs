@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float fireRate;
     public float LifeTime;
-
+    public float Damage;
     public float CurrentTime;
     // Start is called before the first frame update
     void Start()
@@ -35,10 +35,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Target")
-        {
-            Destroy(this.gameObject);
-        }
+        
         if (other.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
