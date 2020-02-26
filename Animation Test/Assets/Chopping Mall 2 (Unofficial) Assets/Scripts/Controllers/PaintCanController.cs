@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PaintCanController : MonoBehaviour
 {
-    public AudioClip[] metalHitSounds;
+    // Initialize all referenced components
+    private AudioSource audioSourceComponent;
 
-    AudioSource audioSourceComponent;
-
-    public float delayBeforeSoundActivation;
-
+    // Initialize variables
+    [SerializeField]
+    private AudioClip[] metalHitSounds;
+    [SerializeField]
+    private float delayBeforeSoundActivation;
     private bool soundActivated = false;
 
     // Start is called before the first frame update
@@ -19,12 +21,14 @@ public class PaintCanController : MonoBehaviour
         StartCoroutine(DelaySoundActivation(delayBeforeSoundActivation));
     }
 
+    // Prevent individual sounds from playing excessively (once per frame, which is hard on the ears)
     IEnumerator DelaySoundActivation(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         soundActivated = true;
     }
 
+    // On collision, play one, randomly selected hit sound effect
     private void OnCollisionEnter(Collision collision)
     {
         if (soundActivated == true)
