@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ElevatorController : MonoBehaviour
 {
+    // Initialize all referenced components
     private AudioSource audioSourceComponent;
+    public Light elevatorLightComponent;
 
+    // Set up and initialize state enumerator
     public enum ElevatorStates
     {
         Resting = 0,
@@ -14,17 +17,24 @@ public class ElevatorController : MonoBehaviour
     }
     private ElevatorStates elevatorState;
 
-    public GameObject elevatorFloor;
-    public Light elevatorLight;
-    public AudioClip dingSound;
+    // Initialize all variables
+    [SerializeField]
+    private GameObject elevatorFloor;
 
-    public Color interactableColour;
-    public Color nonInteractableColour;
+    [SerializeField]
+    private AudioClip dingSound;
+
+    [SerializeField]
+    private Color interactableColour;
+    [SerializeField]
+    private Color nonInteractableColour;
 
     [Range(0.1f, 100.0f)]
-    public float speed;
+    [SerializeField]
+    private float speed;
 
-    public GameObject[] waypoints;
+    [SerializeField]
+    private GameObject[] waypoints;
 
     private int currentWaypoint = 0;
 
@@ -32,6 +42,7 @@ public class ElevatorController : MonoBehaviour
 
     private void Start()
     {
+        // Set immediately necessary referenced components
         audioSourceComponent = gameObject.GetComponent<AudioSource>();
     }
 
@@ -40,11 +51,11 @@ public class ElevatorController : MonoBehaviour
     {
         if (elevatorState == ElevatorStates.Resting)
         {
-            elevatorLight.color = interactableColour;
+            elevatorLightComponent.color = interactableColour;
         }
         else
         {
-            elevatorLight.color = nonInteractableColour;
+            elevatorLightComponent.color = nonInteractableColour;
         }
 
         if (elevatorActive == true && elevatorState == ElevatorStates.Resting)
@@ -75,6 +86,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
+    // If the player is inside of the elevator's bounds, allow the elevator to be activated
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -83,6 +95,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
+    // If the player is outside of the elevator's bounds, do not allow the elevator to be activated
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
@@ -91,6 +104,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
+    // Move elevator up to the next floor
     private void GoUp()
     {
         if (elevatorFloor.transform.position.y < waypoints[currentWaypoint + 1].transform.position.y)
@@ -106,6 +120,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
+    // Move elevator down to the previous floor
     private void GoDown()
     {
         if (elevatorFloor.transform.position.y > waypoints[currentWaypoint - 1].transform.position.y)
