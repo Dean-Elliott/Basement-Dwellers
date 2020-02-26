@@ -9,12 +9,7 @@ public class Projectile : MonoBehaviour
     public float fireRate;
     public float LifeTime;
     public float Damage;
-    public float CurrentTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float CurrentTime; 
 
     // Update is called once per frame
     void Update()

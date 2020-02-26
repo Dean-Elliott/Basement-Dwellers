@@ -16,6 +16,8 @@ public class TestEnemyController : MonoBehaviour
     private bool messageHasPlayed = false;
     [SerializeField]
     private AudioClip killMessage;
+    [SerializeField]
+    private AudioClip playerHurt;
 
     // Set up and initialize state enumerator
     public enum EnemyStates
@@ -129,6 +131,7 @@ public class TestEnemyController : MonoBehaviour
         if (elapsingTimeBetweenAttacks <= 0.0f)
         {
             Debug.Log("I'm attacking!");
+            audioSourceComponent.PlayOneShot(playerHurt);
             enemyHealthComponent.health -= attackDamage;
             elapsingTimeBetweenAttacks = timeBetweenAttacks;
         }

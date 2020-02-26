@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927829836082508301}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DefualtLook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927829836740794529}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bspawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1927829836992682302}
   - component: {fileID: 498475659}
   - component: {fileID: 498475653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: KillBot
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killMessage: {fileID: 8300000, guid: bfeeb34ec5b738e4f97069d8d877e5c1, type: 3}
+  playerHurt: {fileID: 8300000, guid: e80ceabc60df17740882f65184800cbb, type: 3}
   enemyState: 0
   waypoints:
   - {fileID: 0}
@@ -296,7 +297,7 @@ GameObject:
   - component: {fileID: 1927829837017101530}
   - component: {fileID: 1927829837017101531}
   - component: {fileID: 1337249039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RobotHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +408,7 @@ GameObject:
   - component: {fileID: 1927829837525327670}
   - component: {fileID: 1927829837525327668}
   - component: {fileID: 1927829837525327669}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
