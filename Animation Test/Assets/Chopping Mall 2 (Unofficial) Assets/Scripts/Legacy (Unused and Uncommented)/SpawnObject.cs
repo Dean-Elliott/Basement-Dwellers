@@ -19,7 +19,6 @@ public class SpawnObject : MonoBehaviour {
     void Start ()
     {
         currentAmmo = maxAmmo;
-        
     }
 
  

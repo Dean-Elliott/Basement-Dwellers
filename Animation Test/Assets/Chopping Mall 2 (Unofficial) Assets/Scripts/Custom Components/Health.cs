@@ -12,10 +12,14 @@ public class Health : MonoBehaviour
     public ParticleSystem blood;
     private Projectile Bullet;
     private Player PM;
+    private AudioSource sounds;
+    [SerializeField]
+    private AudioClip robotHurt;
     private void Start()
     {
         health = healthMax;
         PM = gameObject.GetComponent<Player>();
+        sounds = gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -27,9 +31,14 @@ public class Health : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Bullet = collision.gameObject.GetComponent<Projectile>();
-            health = health - Bullet.Damage;
-            Destroy(collision.gameObject);
+            if (this.gameObject.tag == "Target")
+            {
+                sounds.PlayOneShot(robotHurt);
+                Bullet = collision.gameObject.GetComponent<Projectile>();
+                health = health - Bullet.Damage;
+                Destroy(collision.gameObject);
+            }
+            
         }
 
         
