@@ -68,16 +68,16 @@ public class PlayerMovementV2 : MonoBehaviour
     private Vector3 moveInput;
     private float forwardAmount;
     private float turnAmount;
-    
+    private SpawnObject SO;
     private bool IsCrouch;
-    
+    public Ammo AmmoPickup;
     
 
 
     private void Awake()
     {
         //setting values
-        
+        SO = GetComponentInChildren<SpawnObject>();
         normalHitBox.SetActive(true);
         CrouchHitBox.SetActive(false);
         movementSpeed = TopSpeed;
@@ -225,7 +225,15 @@ public class PlayerMovementV2 : MonoBehaviour
         // apply gravity to the player
         Rigidbody.AddForce(Vector3.down * gravity);
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ammo")
+        {
+            AmmoPickup = other.gameObject.GetComponent<Ammo>();
+            SO.ReserveAmmo = SO.ReserveAmmo + (AmmoPickup.ContainedAmmo * SO.maxAmmo);
+            Destroy(other.gameObject);
+        }
+    }
     private void OnCollisionStay(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)

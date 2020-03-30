@@ -2839,9 +2839,11 @@ MonoBehaviour:
   spawnPoint: {fileID: 5576562861719400564}
   muzzleFlash: {fileID: 4779841440571406042}
   gunShot: {fileID: 8486069480579249681}
-  maxAmmo: 2147483647
+  ReserveAmmo: 0
+  maxAmmo: 10
   reloadTime: 4
   shotText: {fileID: 0}
+  ReserveText: {fileID: 0}
 --- !u!82 &8486069480579249681
 AudioSource:
   m_ObjectHideFlags: 0

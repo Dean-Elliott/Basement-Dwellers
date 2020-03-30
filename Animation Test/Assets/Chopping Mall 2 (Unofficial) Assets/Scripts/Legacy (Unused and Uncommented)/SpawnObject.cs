@@ -10,12 +10,15 @@ public class SpawnObject : MonoBehaviour {
     public Transform spawnPoint;
     public ParticleSystem muzzleFlash;
     public AudioSource gunShot;
+    public int ReserveAmmo;
     private int currentAmmo;
     public int maxAmmo = 10;
     public float reloadTime = 4f;
     private bool isReloading = false;
     public Transform shotText;
+    public Transform ReserveText;
     private bool Shot = false;
+    private bool CanShoot = true;
 
     void Start ()
     {
@@ -26,6 +29,7 @@ public class SpawnObject : MonoBehaviour {
     void OnEnable()
     {
         currentAmmo = maxAmmo;
+        ReserveAmmo = maxAmmo * 3;
         shotText.GetComponent<Text>().text = currentAmmo.ToString();
         isReloading = false;
         
@@ -33,18 +37,30 @@ public class SpawnObject : MonoBehaviour {
     // Use this for initialization
     void Update()
     {
-        if (isReloading)
-            return;
+        ReserveText.GetComponent<Text>().text = ReserveAmmo.ToString();
+        
+            
        
-        if (currentAmmo <= 0)
+        if (currentAmmo == 0)
         {
-           StartCoroutine(Reload());
-            return;
+            
+            if (ReserveAmmo > 1)
+            {
+                
+                isReloading = true;
+                StartCoroutine(Reload());
+                
+            }
+           
         }
         //Instantiate Game Object
         if (Input.GetButtonDown("Fire1") || Input.GetAxis("Rtrigger")>0 && Shot == false)
         {
-            Fire();
+            if (isReloading == false)
+            {
+                Fire();
+            }
+            
 
 
         }
@@ -56,13 +72,24 @@ public class SpawnObject : MonoBehaviour {
         
         IEnumerator Reload ()
         {
-            isReloading = true;
+
             Debug.Log("Reloading");
             shotText.GetComponent<Text>().text = ("Reloading");
+            if (ReserveAmmo <= maxAmmo)
+            {
+                currentAmmo = ReserveAmmo;
+                ReserveAmmo = 0;
+            }
 
+            if (ReserveAmmo > maxAmmo)
+            {
+                currentAmmo = maxAmmo;
+                ReserveAmmo -= maxAmmo;
+            }
             yield return new WaitForSeconds(reloadTime);
             
-            currentAmmo = maxAmmo;
+            
+
             isReloading = false;
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
         }

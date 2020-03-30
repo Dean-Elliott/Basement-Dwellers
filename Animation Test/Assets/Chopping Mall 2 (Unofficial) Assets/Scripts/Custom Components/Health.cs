@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     private AudioSource sounds;
     [SerializeField]
     private AudioClip robotHurt;
+    public GameObject AmmoPickupPrefab;
     private void Start()
     {
         health = healthMax;
@@ -55,6 +56,7 @@ public class Health : MonoBehaviour
         {
             if(this.gameObject.tag == "Target")
             {
+                Instantiate(AmmoPickupPrefab , new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity);
                 Destroy(this.gameObject);
             }
 
