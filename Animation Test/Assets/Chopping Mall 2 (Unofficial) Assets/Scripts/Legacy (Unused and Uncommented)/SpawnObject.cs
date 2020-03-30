@@ -11,19 +11,15 @@ public class SpawnObject : MonoBehaviour {
     public ParticleSystem muzzleFlash;
     public AudioSource gunShot;
     private int currentAmmo;
-    public int maxAmmo = 10;
+    public int maxAmmo;
     public float reloadTime = 4f;
     private bool isReloading = false;
     public Transform shotText;
 
-    void Start ()
-    {
-        currentAmmo = maxAmmo;
-    }
-
  
     void OnEnable()
     {
+        //Set ammo to max
         currentAmmo = maxAmmo;
         shotText.GetComponent<Text>().text = currentAmmo.ToString();
         isReloading = false;
@@ -32,9 +28,10 @@ public class SpawnObject : MonoBehaviour {
     // Use this for initialization
     void Update()
     {
+        //Check if reloading
         if (isReloading)
             return;
-       
+        //If player has ammo, start reload coroutine
         if (currentAmmo <= 0)
         {
            StartCoroutine(Reload());
@@ -52,7 +49,7 @@ public class SpawnObject : MonoBehaviour {
 
         IEnumerator Reload ()
         {
-            isReloading = true;
+            isReloading = true; //set reloading to true
             Debug.Log("Reloading");
             shotText.GetComponent<Text>().text = ("Reloading");
 
