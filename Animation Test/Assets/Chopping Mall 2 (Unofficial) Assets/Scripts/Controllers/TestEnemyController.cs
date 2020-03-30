@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 public class TestEnemyController : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class TestEnemyController : MonoBehaviour
 
     private void Awake()
     {
+        //AnalyticsEvent.
+
         // Increment the number of enemies in the scene on spawn
         enemiesInScene++;
     }
@@ -63,7 +66,7 @@ public class TestEnemyController : MonoBehaviour
         timeBetweenAttacks = 1f / attacksPerSecond;
         elapsingTimeBetweenAttacks = timeBetweenAttacks;
 
-        
+
         if (waypoints[0] != null)
         {
             navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
@@ -119,7 +122,7 @@ public class TestEnemyController : MonoBehaviour
         navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
         yield return new WaitForSeconds(0.1f);
     }
-    
+
     // Attack target at set rate and damage value
     private void AttackTarget()
     {
@@ -184,7 +187,7 @@ public class TestEnemyController : MonoBehaviour
     // If this game object collides with a projectile, reduce health
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.tag == "Bullet")
         {
             healthComponent.health--;
         }

@@ -1,9 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+
+[System.Serializable]
+public class Wave
+{
+    public int enemiesPerWave;
+    public GameObject enemy;
+}
 
 public class EnemySpawnerController : MonoBehaviour
 {
+    public Wave[] waves;
+    [HideInInspector]
+    public int currentWave = 0;
+
     // Initialize all variables. Serialize where appropriate
     [SerializeField]
     private GameObject enemy;
@@ -19,13 +31,13 @@ public class EnemySpawnerController : MonoBehaviour
     [SerializeField]
     private Transform[] waypoints;
 
-    private float elapsingTimeBetweenSpawns;
+    //private float elapsingTimeBetweenSpawns;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set the initial spawn time
-        elapsingTimeBetweenSpawns = timeBetweenSpawns;
+        //elapsingTimeBetweenSpawns = timeBetweenSpawns;
     }
 
     // Update is called once per frame
@@ -34,24 +46,24 @@ public class EnemySpawnerController : MonoBehaviour
         // Get the the number of enemies in the scene
         currentActiveEnemies = TestEnemyController.enemiesInScene;
 
-        // If the enemy count has not been maxed out, decrement the spawn timer
-        if (currentActiveEnemies < maximumActiveEnemies)
+        // If there are no enemies in the scene, spawn a new wave
+        if (currentActiveEnemies == 0)
         {
-            elapsingTimeBetweenSpawns -= Time.deltaTime;
-        }
-
-        // If the elapsing time between spawns reaches 0, spawn an enemy and reset the timer
-        if (elapsingTimeBetweenSpawns <= 0.0f)
-        {
-            SpawnEnemy();
-            elapsingTimeBetweenSpawns = timeBetweenSpawns;
+            SpawnWave(waves[currentWave]);
         }
     }
 
-    public void SpawnEnemy()
+    public void SpawnWave(Wave waveToSpawn)
     {
         // Spawn an enemy at a randomly selection waypoint
-        Vector3 spawnPosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
-        Instantiate(enemy, spawnPosition, Quaternion.identity);
+        for (int i = 0; i < waveToSpawn.enemiesPerWave; i++)
+        {
+            Vector3 spawnPosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+            Instantiate(enemy, spawnPosition, Quaternion.identity);
+        }
+
+        currentWave++;
     }
+
+
 }
