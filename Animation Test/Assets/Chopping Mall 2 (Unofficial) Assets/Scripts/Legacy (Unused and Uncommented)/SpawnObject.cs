@@ -15,6 +15,7 @@ public class SpawnObject : MonoBehaviour {
     public float reloadTime = 4f;
     private bool isReloading = false;
     public Transform shotText;
+    private bool Shot = false;
 
     void Start ()
     {
@@ -41,15 +42,18 @@ public class SpawnObject : MonoBehaviour {
             return;
         }
         //Instantiate Game Object
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") || Input.GetAxis("Rtrigger")>0 && Shot == false)
         {
-            gunShot.Play();
-            muzzleFlash.Play();
-            GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
-            currentAmmo--;
-            shotText.GetComponent<Text>().text = currentAmmo.ToString();
+            Fire();
+
+
         }
 
+        if (Input.GetAxis("Rtrigger")<1)
+        {
+            Shot = false;
+        }
+        
         IEnumerator Reload ()
         {
             isReloading = true;
@@ -63,6 +67,15 @@ public class SpawnObject : MonoBehaviour {
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
         }
        
+    }
+    void Fire()
+    {
+        gunShot.Play();
+        muzzleFlash.Play();
+        GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
+        currentAmmo--;
+        shotText.GetComponent<Text>().text = currentAmmo.ToString();
+        Shot = true;
     }
  
 }
