@@ -131,7 +131,7 @@ public class TestEnemyController : MonoBehaviour
         if (elapsingTimeBetweenAttacks <= 0.0f)
         {
             Debug.Log("I'm attacking!");
-            audioSourceComponent.PlayOneShot(playerHurt);
+            audioSourceComponent.PlayOneShot(playerHurt); //Play playerhurt sound
             enemyHealthComponent.health -= attackDamage;
             elapsingTimeBetweenAttacks = timeBetweenAttacks;
         }

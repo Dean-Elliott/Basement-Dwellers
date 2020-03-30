@@ -10,9 +10,11 @@ public class SpawnObject : MonoBehaviour {
     public Transform spawnPoint;
     public ParticleSystem muzzleFlash;
     public AudioSource gunShot;
+    [SerializeField]
     private int currentAmmo;
     public int maxAmmo;
     public float reloadTime = 4f;
+    [SerializeField]
     private bool isReloading = false;
     public Transform shotText;
 
@@ -40,10 +42,10 @@ public class SpawnObject : MonoBehaviour {
         //Instantiate Game Object
         if (Input.GetButtonDown("Fire1"))
         {
-            gunShot.Play();
-            muzzleFlash.Play();
+            gunShot.Play(); //Play gun sound
+            muzzleFlash.Play(); //Play particle effect
             GameObject bullet = Instantiate(asset, spawnPoint.position, spawnPoint.rotation);
-            currentAmmo--;
+            currentAmmo--;//Redue current ammo
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
         }
 
