@@ -15,6 +15,9 @@ public class Health : MonoBehaviour
     private AudioSource sounds;
     [SerializeField]
     private AudioClip robotHurt;
+
+    public static bool isPlayerDead = false;
+
     private void Start()
     {
         health = healthMax;
@@ -38,10 +41,8 @@ public class Health : MonoBehaviour
                 health = health - Bullet.Damage;
                 Destroy(collision.gameObject);
             }
-            
-        }
 
-        
+        }
     }
 
     void CheckHealth()
@@ -53,19 +54,22 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            if(this.gameObject.tag == "Target")
+            health = 0;
+
+            if (this.gameObject.tag == "Target")
             {
                 Destroy(this.gameObject);
             }
 
-            if(this.gameObject.tag == "Player")
+            if (this.gameObject.tag == "Player")
             {
                 Dead = true;
+                isPlayerDead = true;
                 animator.SetBool("IsDead", Dead);
                 PM.CanMove = false;
                 PM.CanLookAround = false;
             }
-            
+
         }
     }
 }
