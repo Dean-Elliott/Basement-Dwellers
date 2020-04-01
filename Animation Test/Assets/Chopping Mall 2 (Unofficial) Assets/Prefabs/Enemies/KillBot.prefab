@@ -285,8 +285,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   blood: {fileID: 0}
   robotHurt: {fileID: 8300000, guid: 82de909245fcb4844ad574cbeb89acb0, type: 3}
-  AmmoPickupPrefab: {fileID: 295068860890504294, guid: 9319e3d43186da24d88c401abfc24e65,
-    type: 3}
 --- !u!1 &1927829837017101526
 GameObject:
   m_ObjectHideFlags: 0

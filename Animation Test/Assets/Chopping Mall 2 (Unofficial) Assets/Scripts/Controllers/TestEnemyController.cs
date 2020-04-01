@@ -116,12 +116,14 @@ public class TestEnemyController : MonoBehaviour
 
     }
 
+    
     // Travel towards the player (uses a coroutine so as not to set the destination every frame)
     IEnumerator Travel()
     {
         navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
         yield return new WaitForSeconds(0.1f);
     }
+    
 
     // Attack target at set rate and damage value
     private void AttackTarget()

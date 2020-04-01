@@ -15,7 +15,9 @@ public class Health : MonoBehaviour
     private AudioSource sounds;
     [SerializeField]
     private AudioClip robotHurt;
-    public GameObject AmmoPickupPrefab;
+
+    public static bool playerDead = false;
+
     private void Start()
     {
         health = healthMax;
@@ -39,10 +41,8 @@ public class Health : MonoBehaviour
                 health = health - Bullet.Damage;
                 Destroy(collision.gameObject);
             }
-            
-        }
 
-        
+        }
     }
 
     void CheckHealth()
@@ -54,20 +54,22 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            if(this.gameObject.tag == "Target")
+            health = 0;
+
+            if (this.gameObject.tag == "Target")
             {
-                Instantiate(AmmoPickupPrefab , new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z), Quaternion.identity);
                 Destroy(this.gameObject);
             }
 
-            if(this.gameObject.tag == "Player")
+            if (this.gameObject.tag == "Player")
             {
                 Dead = true;
+                playerDead = true;
                 animator.SetBool("IsDead", Dead);
                 PM.CanMove = false;
                 PM.CanLookAround = false;
             }
-            
+
         }
     }
 }

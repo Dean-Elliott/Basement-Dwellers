@@ -12,6 +12,8 @@ public class Wave
 
 public class EnemySpawnerController : MonoBehaviour
 {
+    private AnalyticsEventTracker analyticsEventTrackerComponent;
+
     public Wave[] waves;
     [HideInInspector]
     public int currentWave = 0;
@@ -36,6 +38,8 @@ public class EnemySpawnerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        analyticsEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
+
         // Set the initial spawn time
         //elapsingTimeBetweenSpawns = timeBetweenSpawns;
     }
@@ -51,6 +55,11 @@ public class EnemySpawnerController : MonoBehaviour
         {
             SpawnWave(waves[currentWave]);
         }
+
+        if (Health.playerDead == true)
+        {
+            ReportWaveOnDeath();
+        }
     }
 
     public void SpawnWave(Wave waveToSpawn)
@@ -65,5 +74,9 @@ public class EnemySpawnerController : MonoBehaviour
         currentWave++;
     }
 
+    public void ReportWaveOnDeath()
+    {
+        analyticsEventTrackerComponent.TriggerEvent();
+    }
 
 }

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
-public class SpawnObject : MonoBehaviour {
+public class SpawnObject : MonoBehaviour
+{
+    private AnalyticsEventTracker analyticEventTrackerComponent;
+
     //Initializing Variables
     public GameObject asset;
     public Transform spawnPoint;
@@ -20,57 +24,61 @@ public class SpawnObject : MonoBehaviour {
     private bool Shot = false;
     private bool CanShoot = true;
 
-    void Start ()
+    // Reporting
+    [HideInInspector]
+    public int shots;
+
+    void Start()
     {
+        analyticEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
+
         currentAmmo = maxAmmo;
     }
 
- 
+
     void OnEnable()
     {
         currentAmmo = maxAmmo;
         ReserveAmmo = maxAmmo * 3;
         shotText.GetComponent<Text>().text = currentAmmo.ToString();
         isReloading = false;
-        
+
     }
     // Use this for initialization
     void Update()
     {
         ReserveText.GetComponent<Text>().text = ReserveAmmo.ToString();
-        
-            
-       
+
+
+
         if (currentAmmo == 0)
         {
-            
+
             if (ReserveAmmo > 1)
             {
-                
+
                 isReloading = true;
                 StartCoroutine(Reload());
-                
+
             }
-           
+
         }
         //Instantiate Game Object
-        if (Input.GetButtonDown("Fire1") || Input.GetAxis("Rtrigger")>0 && Shot == false)
+        if (Input.GetButtonDown("Fire1") || Input.GetAxis("Rtrigger") > 0 && Shot == false)
         {
             if (isReloading == false)
             {
+                shots++;
                 Fire();
             }
-            
-
-
         }
 
-        if (Input.GetAxis("Rtrigger")<1)
+        if (Input.GetAxis("Rtrigger") < 1)
         {
             Shot = false;
         }
-        
-        IEnumerator Reload ()
+
+        IEnumerator Reload()
         {
 
             Debug.Log("Reloading");
@@ -87,13 +95,18 @@ public class SpawnObject : MonoBehaviour {
                 ReserveAmmo -= maxAmmo;
             }
             yield return new WaitForSeconds(reloadTime);
-            
-            
+
+
 
             isReloading = false;
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
         }
-       
+
+        if (Health.playerDead == true)
+        {
+
+        }
+
     }
     void Fire()
     {
@@ -104,5 +117,11 @@ public class SpawnObject : MonoBehaviour {
         shotText.GetComponent<Text>().text = currentAmmo.ToString();
         Shot = true;
     }
- 
+
+    private void ReportShotsFired()
+    {
+        analyticEventTrackerComponent.TriggerEvent();
+        shots = 0;
+    }
+
 }
