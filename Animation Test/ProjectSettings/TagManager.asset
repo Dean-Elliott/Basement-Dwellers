@@ -9,7 +9,6 @@ TagManager:
   - Lock
   - Ground
   - Bullet
-  - Ammo
   layers:
   - Default
   - TransparentFX
