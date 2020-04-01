@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class PlayerMovementV2 : MonoBehaviour
 {
-    private AnalyticsEventTracker analyticsEventTrackerComponent;
-
+    
     private float movementSpeed;
 
     [SerializeField]
@@ -58,9 +56,9 @@ public class PlayerMovementV2 : MonoBehaviour
     public float Xoffset;
     public GameObject CrouchHitBox;
     public GameObject normalHitBox;
-
+     
     public GameObject CameraOrient;
-
+    
 
     private Transform cam;
     private Rigidbody rb;
@@ -70,22 +68,16 @@ public class PlayerMovementV2 : MonoBehaviour
     private Vector3 moveInput;
     private float forwardAmount;
     private float turnAmount;
-    private SpawnObject SO;
+    
     private bool IsCrouch;
-    public Ammo AmmoPickup;
+    
+    
 
-
-    //Analytics Reporting
-    [HideInInspector]
-    public static int jumpsMade;
 
     private void Awake()
     {
-        jumpsMade = 0;
-        analyticsEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
-
         //setting values
-        SO = GetComponentInChildren<SpawnObject>();
+        
         normalHitBox.SetActive(true);
         CrouchHitBox.SetActive(false);
         movementSpeed = TopSpeed;
@@ -94,14 +86,14 @@ public class PlayerMovementV2 : MonoBehaviour
         Rigidbody.freezeRotation = true;
         cam = Camera.main.transform;
     }
-
+    
     void FixedUpdate()
     {
 
         //get velocity, lerp it to destination velocity, then assign it back
         Vector3 velocity = Rigidbody.velocity;
         Vector3 desiredVelocity = new Vector3(Input.x, 0f, Input.y).normalized * movementSpeed;
-        Vector3 CorrectedDV = new Vector3(desiredVelocity.x, 0f, desiredVelocity.z * Xoffset);
+        Vector3 CorrectedDV = new Vector3(desiredVelocity.x , 0f, desiredVelocity.z * Xoffset);
         CorrectedDV.y = velocity.y;
 
 
@@ -161,7 +153,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
         }
 
-
+        
 
 
     }
@@ -172,21 +164,17 @@ public class PlayerMovementV2 : MonoBehaviour
         if (Jump && IsGrounded)
         {
             PerformJump();
-            jumpsMade++;
         }
         animator.SetBool("IsGrounded", IsGrounded);
 
-
-        if (Health.isPlayerDead == true)
-        {
-
-        }
     }
+
+
 
     // Animation content methods actually called
     void Move(Vector3 move)
     {
-        if (move.magnitude > 1)
+        if(move.magnitude > 1)
         {
             move.Normalize();
         }
@@ -197,7 +185,7 @@ public class PlayerMovementV2 : MonoBehaviour
         ConverMoveInput();
         UpdateAnimator();
 
-
+        
     }
 
     void ConverMoveInput()
@@ -208,7 +196,7 @@ public class PlayerMovementV2 : MonoBehaviour
         forwardAmount = localMove.z;
     }
 
-
+    
     void UpdateAnimator()
     {
         /* START LOCOMOTION */
@@ -237,15 +225,7 @@ public class PlayerMovementV2 : MonoBehaviour
         // apply gravity to the player
         Rigidbody.AddForce(Vector3.down * gravity);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Ammo")
-        {
-            AmmoPickup = other.gameObject.GetComponent<Ammo>();
-            SO.ReserveAmmo = SO.ReserveAmmo + (AmmoPickup.ContainedAmmo * SO.maxAmmo);
-            Destroy(other.gameObject);
-        }
-    }
+
     private void OnCollisionStay(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)
@@ -259,10 +239,5 @@ public class PlayerMovementV2 : MonoBehaviour
                 nextGroundLeave = Time.fixedTime + 0.15f;
             }
         }
-    }
-
-    private void ReportJumpsMade()
-    {
-        analyticsEventTrackerComponent.TriggerEvent();
     }
 }
