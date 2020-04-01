@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Chopping Mall 2 (Unofficial) Assets/Scenes/Test Scenes/sce_Level_Test.unity
     guid: 481518d2ffd7aac478e3335d690ecb9e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Chopping Mall 2 (Unofficial) Assets/Scenes/Build Scenes/sce_Mall_Level.unity
     guid: 279f8238847051e40bc57c9e68733128
   - enabled: 0
@@ -20,8 +20,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Chopping Mall 2 (Unofficial) Assets/Scenes/Test Scenes/sce_JacksonScene2.unity
     guid: 291c988e69c2e7541af1d01b22e2dc0f
-  - enabled: 1
-    path: Assets/Chopping Mall 2 (Unofficial) Assets/Scenes/Test Scenes/sce_Mall_Level
-      (New).unity
-    guid: d1ff68863a1179a409660fb541d32696
   m_configObjects: {}
