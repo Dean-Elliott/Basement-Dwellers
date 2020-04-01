@@ -77,10 +77,11 @@ public class PlayerMovementV2 : MonoBehaviour
 
     //Analytics Reporting
     [HideInInspector]
-    public int jumpsMade;
+    public static int jumpsMade;
 
     private void Awake()
     {
+        jumpsMade = 0;
         analyticsEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
 
         //setting values
@@ -176,7 +177,7 @@ public class PlayerMovementV2 : MonoBehaviour
         animator.SetBool("IsGrounded", IsGrounded);
 
 
-        if (Health.playerDead == true)
+        if (Health.isPlayerDead == true)
         {
 
         }

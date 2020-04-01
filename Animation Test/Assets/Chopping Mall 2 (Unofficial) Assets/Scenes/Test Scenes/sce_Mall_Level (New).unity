@@ -3402,7 +3402,6 @@ MonoBehaviour:
     enemy: {fileID: 1927829836992682303, guid: 3c61f9975675dc14baaec1610bf697dc, type: 3}
   - enemiesPerWave: 3
     enemy: {fileID: 1927829836992682303, guid: 3c61f9975675dc14baaec1610bf697dc, type: 3}
-  currentWave: 0
   enemy: {fileID: 1927829836992682303, guid: 3c61f9975675dc14baaec1610bf697dc, type: 3}
   maximumActiveEnemies: 3
   timeBetweenSpawns: 5
@@ -3474,7 +3473,7 @@ MonoBehaviour:
           m_ValueType: System.Int32
           m_Value: 0
           m_Target:
-            m_Target: {fileID: 0}
+            m_Target: {fileID: 245393258}
             m_Path: currentWave
             m_ValidTypeNames:
             - System.Int32
@@ -38566,6 +38565,49 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0.99999994}
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1659883946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659883947}
+  - component: {fileID: 1659883948}
+  m_Layer: 0
+  m_Name: Analytics Tracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659883947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659883946}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.063427, y: -2.7574184, z: -31.657557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659883948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659883946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a402115d244f21409be20da6e43cd24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1677760214
 Mesh:
   m_ObjectHideFlags: 0

@@ -26,10 +26,12 @@ public class SpawnObject : MonoBehaviour
 
     // Reporting
     [HideInInspector]
-    public int shots;
+    public static int shots;
 
     void Start()
     {
+        shots = 0;
+
         analyticEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
 
         currentAmmo = maxAmmo;
@@ -102,7 +104,7 @@ public class SpawnObject : MonoBehaviour
             shotText.GetComponent<Text>().text = currentAmmo.ToString();
         }
 
-        if (Health.playerDead == true)
+        if (Health.isPlayerDead == true)
         {
 
         }

@@ -11,8 +11,9 @@ public class TestEnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgentComponent;
     private Health healthComponent;
 
-    // Count all enemies in the scene
+    // Count all enemies and enemy deaths in the scene
     public static int enemiesInScene;
+    public static int enemiesKilled;
 
     private bool messageHasPlayed = false;
     [SerializeField]
@@ -112,18 +113,16 @@ public class TestEnemyController : MonoBehaviour
                 navMeshAgentComponent.isStopped = true;
                 break;
         }
-
-
     }
 
-    
+
     // Travel towards the player (uses a coroutine so as not to set the destination every frame)
     IEnumerator Travel()
     {
         navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
         yield return new WaitForSeconds(0.1f);
     }
-    
+
 
     // Attack target at set rate and damage value
     private void AttackTarget()
@@ -198,6 +197,8 @@ public class TestEnemyController : MonoBehaviour
     // If health is depleted, destroy this game object
     public void OnHealthDepleted()
     {
+        enemiesKilled++;
+
         Destroy(gameObject);
     }
 

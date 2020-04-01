@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private AudioClip robotHurt;
 
-    public static bool playerDead = false;
+    public static bool isPlayerDead = false;
 
     private void Start()
     {
@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
             if (this.gameObject.tag == "Player")
             {
                 Dead = true;
-                playerDead = true;
+                isPlayerDead = true;
                 animator.SetBool("IsDead", Dead);
                 PM.CanMove = false;
                 PM.CanLookAround = false;
