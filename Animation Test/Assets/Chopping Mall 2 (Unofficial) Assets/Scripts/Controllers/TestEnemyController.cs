@@ -191,6 +191,10 @@ public class TestEnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             healthComponent.health--;
+            if (healthComponent.health <= 0)
+            {
+                OnHealthDepleted();
+            }
         }
     }
 
@@ -198,6 +202,7 @@ public class TestEnemyController : MonoBehaviour
     public void OnHealthDepleted()
     {
         enemiesKilled++;
+        Debug.Log(enemiesKilled);
 
         Destroy(gameObject);
     }
