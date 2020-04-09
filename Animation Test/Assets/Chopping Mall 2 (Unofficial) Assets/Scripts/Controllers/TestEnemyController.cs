@@ -134,7 +134,7 @@ public class TestEnemyController : MonoBehaviour
 
         if (elapsingTimeBetweenAttacks <= 0.0f)
         {
-            Debug.Log("I'm attacking!");
+            //Debug.Log("I'm attacking!");
             audioSourceComponent.PlayOneShot(playerHurt);
             enemyHealthComponent.health -= attackDamage;
             elapsingTimeBetweenAttacks = timeBetweenAttacks;
@@ -202,7 +202,7 @@ public class TestEnemyController : MonoBehaviour
     public void OnHealthDepleted()
     {
         enemiesKilled++;
-        Debug.Log(enemiesKilled);
+        //Debug.Log(enemiesKilled);
 
         Destroy(gameObject);
     }

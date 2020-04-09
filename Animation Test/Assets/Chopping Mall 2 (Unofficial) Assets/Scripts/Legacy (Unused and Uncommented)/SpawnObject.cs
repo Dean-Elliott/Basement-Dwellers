@@ -83,7 +83,7 @@ public class SpawnObject : MonoBehaviour
         IEnumerator Reload()
         {
 
-            Debug.Log("Reloading");
+            //Debug.Log("Reloading");
             shotText.GetComponent<Text>().text = ("Reloading");
             if (ReserveAmmo <= maxAmmo)
             {

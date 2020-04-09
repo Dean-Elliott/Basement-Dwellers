@@ -35,32 +35,32 @@ public class TrackAnalytics : MonoBehaviour
         {
             { "Wave number", EnemySpawnerController.currentWave }
         });
-        Debug.Log("Wave number before death " + waveNumberResult);
+        //Debug.Log("Wave number before death " + waveNumberResult);
 
         AnalyticsResult jumpsMadeResult = Analytics.CustomEvent("Jumps made before death", new Dictionary<string, object>
         {
             { "Jumps made", PlayerMovementV2.jumpsMade }
         });
-        Debug.Log("Jumps made before death " + jumpsMadeResult);
+        //Debug.Log("Jumps made before death " + jumpsMadeResult);
 
         AnalyticsResult shotsMadeResult = Analytics.CustomEvent("Shots made before death", new Dictionary<string, object>
         {
             { "Shots made", SpawnObject.shots }
         });
-        Debug.Log("Shots made before death " + shotsMadeResult);
+        //Debug.Log("Shots made before death " + shotsMadeResult);
 
         AnalyticsResult enemiesKilledResult = Analytics.CustomEvent("Enemies killed before death", new Dictionary<string, object>
         {
             { "Enemies killed", TestEnemyController.enemiesKilled }
         });
-        Debug.Log("Enemies killed before death " + enemiesKilledResult);
+        //Debug.Log("Enemies killed before death " + enemiesKilledResult);
 
         AnalyticsResult timeSpentInLevelResult = Analytics.CustomEvent("Time spent in level before death",
             new Dictionary<string, object>
         {
             { "Time spent in level", timeSpentInLevelBeforeDeath }
         });
-        Debug.Log("Time spent in level before death " + timeSpentInLevelResult);
+        //Debug.Log("Time spent in level before death " + timeSpentInLevelResult);
 
         isFinishedSendingResults = true;
     }
