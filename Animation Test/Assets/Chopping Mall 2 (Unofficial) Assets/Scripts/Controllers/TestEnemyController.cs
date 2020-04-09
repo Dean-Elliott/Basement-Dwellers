@@ -47,10 +47,10 @@ public class TestEnemyController : MonoBehaviour
     private float timeBetweenAttacks;
     private float elapsingTimeBetweenAttacks;
 
+    private bool isTravelling;
+
     private void Awake()
     {
-        //AnalyticsEvent.
-
         // Increment the number of enemies in the scene on spawn
         enemiesInScene++;
     }
@@ -66,7 +66,6 @@ public class TestEnemyController : MonoBehaviour
         // Set timers
         timeBetweenAttacks = 1f / attacksPerSecond;
         elapsingTimeBetweenAttacks = timeBetweenAttacks;
-
 
         if (waypoints[0] != null)
         {
@@ -100,7 +99,7 @@ public class TestEnemyController : MonoBehaviour
         {
             case EnemyStates.Travelling:
                 //Enemy is travelling to the next destination
-                StartCoroutine(Travel());
+                ActivateTravelCoroutine();
                 break;
 
             case EnemyStates.Attacking:
@@ -115,19 +114,34 @@ public class TestEnemyController : MonoBehaviour
         }
     }
 
+    private void ActivateTravelCoroutine()
+    {
+        if (isTravelling == false)
+        {
+            StartCoroutine(Travel());
+        }
+    }
+
 
     // Travel towards the player (uses a coroutine so as not to set the destination every frame)
     IEnumerator Travel()
     {
-        navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
-        yield return new WaitForSeconds(0.1f);
+        isTravelling = true;
+
+        while (true)
+        {
+            navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
 
     // Attack target at set rate and damage value
     private void AttackTarget()
     {
+        isTravelling = false;
         StopCoroutine(Travel());
+
         navMeshAgentComponent.isStopped = true;
 
         elapsingTimeBetweenAttacks -= Time.deltaTime;
@@ -202,8 +216,6 @@ public class TestEnemyController : MonoBehaviour
     public void OnHealthDepleted()
     {
         enemiesKilled++;
-        //Debug.Log(enemiesKilled);
-
         Destroy(gameObject);
     }
 

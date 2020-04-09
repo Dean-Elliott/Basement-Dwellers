@@ -12,8 +12,6 @@ public class Wave
 
 public class EnemySpawnerController : MonoBehaviour
 {
-    //private AnalyticsEventTracker analyticsEventTrackerComponent;
-
     public Wave[] waves;
     [HideInInspector]
     public static int currentWave = 0;
@@ -33,35 +31,29 @@ public class EnemySpawnerController : MonoBehaviour
     [SerializeField]
     private Transform[] waypoints;
 
-    //private float elapsingTimeBetweenSpawns;
-
     // Start is called before the first frame update
     void Start()
     {
         TestEnemyController.enemiesKilled = 0;
         currentWave = 0;
 
-        //analyticsEventTrackerComponent = gameObject.GetComponent<AnalyticsEventTracker>();
-
-        // Set the initial spawn time
-        //elapsingTimeBetweenSpawns = timeBetweenSpawns;
+        StartCoroutine("UpdateWave");
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator UpdateWave()
     {
-        // Get the the number of enemies in the scene
-        currentActiveEnemies = TestEnemyController.enemiesInScene;
-
-        // If there are no enemies in the scene, spawn a new wave
-        if (currentActiveEnemies == 0)
+        while (true)
         {
-            SpawnWave(waves[currentWave]);
-        }
+            // Get the the number of enemies in the scene
+            currentActiveEnemies = TestEnemyController.enemiesInScene;
 
-        if (Health.isPlayerDead == true)
-        {
-            ReportWaveOnDeath();
+            // If there are no enemies in the scene, spawn a new wave
+            if (currentActiveEnemies == 0)
+            {
+                SpawnWave(waves[currentWave]);
+            }
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -75,13 +67,6 @@ public class EnemySpawnerController : MonoBehaviour
         }
 
         currentWave++;
-    }
-
-    public void ReportWaveOnDeath()
-    {
-        //Analytics.CustomEvent("")
-
-        //analyticsEventTrackerComponent.TriggerEvent();
     }
 
 }

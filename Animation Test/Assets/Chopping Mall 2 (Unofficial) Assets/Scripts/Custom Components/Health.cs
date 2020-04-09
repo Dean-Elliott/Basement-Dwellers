@@ -41,7 +41,6 @@ public class Health : MonoBehaviour
                 health = health - Bullet.Damage;
                 Destroy(collision.gameObject);
             }
-
         }
     }
 

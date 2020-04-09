@@ -55,15 +55,11 @@ public class SpawnObject : MonoBehaviour
 
         if (currentAmmo == 0)
         {
-
             if (ReserveAmmo > 1)
             {
-
                 isReloading = true;
                 StartCoroutine(Reload());
-
             }
-
         }
         //Instantiate Game Object
         if (Input.GetButtonDown("Fire1") || Input.GetAxis("Rtrigger") > 0 && Shot == false)
@@ -82,7 +78,6 @@ public class SpawnObject : MonoBehaviour
 
         IEnumerator Reload()
         {
-
             //Debug.Log("Reloading");
             shotText.GetComponent<Text>().text = ("Reloading");
             if (ReserveAmmo <= maxAmmo)
@@ -108,8 +103,8 @@ public class SpawnObject : MonoBehaviour
         {
 
         }
-
     }
+
     void Fire()
     {
         gunShot.Play();
