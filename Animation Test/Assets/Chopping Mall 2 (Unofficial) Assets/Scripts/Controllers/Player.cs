@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
                 lookDir.y = 0;
 
                 transform.LookAt(transform.position + lookDir, Vector3.up);
-                //Vector2 Newlook = new Vector2(lookPos.x,lookPos.z);
+                
 
                 return default;
             }
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //send inputs to the movement thingy
+        //send inputs to the movement method
         float x = LeftStick.x;
         float y = LeftStick.y;
         bool jump = Gamepad?.buttonSouth?.isPressed ?? Keyboard.current.spaceKey.isPressed;
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
         Vector2 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
         if (screenPoint.x < -0.1f || screenPoint.x > 1.1f || screenPoint.y < -0.1f || screenPoint.y > 1.2f || transform.position.y < -2f)
         {
-            //is oob
+            //move the player
             transform.position = new Vector3(0f, 8f, 0f);
             Movement.Rigidbody.velocity = Vector3.zero;
         }
@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
 
     public void LookAround(Vector3 stick)
     {
-        //looking around
+        //Check the controllers stick values
         float x = stick.x;
         float y = stick.y;
 
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
         Vector3 lookDir = new Vector3(x, y);
         if (lookDir.sqrMagnitude > 0.25f)
         {
-            //normalize the thingy
+            //normalize the look direction
             lookDir.Normalize();
 
             Vector3 eulerAngles = transform.eulerAngles;
