@@ -7,17 +7,6 @@ public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
     public float transitionLoadDelay = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     //load the next scene
     public void LoadNextLevel()
