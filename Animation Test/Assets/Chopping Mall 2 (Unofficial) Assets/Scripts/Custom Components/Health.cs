@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
                 sounds.PlayOneShot(robotHurt);
                 Bullet = collision.gameObject.GetComponent<Projectile>();
                 health = health - Bullet.Damage;
-                Destroy(collision.gameObject);
+                collision.gameObject.SetActive(false);
             }
             
         }
