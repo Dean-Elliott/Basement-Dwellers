@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
 
+//Set up the parameters for a wave
 [System.Serializable]
 public class Wave
 {
@@ -17,9 +18,6 @@ public class EnemySpawnerController : MonoBehaviour
     public static int currentWave = 0;
 
     // Initialize all variables. Serialize where appropriate
-    [SerializeField]
-    private GameObject enemy;
-
     [SerializeField]
     private int maximumActiveEnemies;
 
@@ -40,6 +38,7 @@ public class EnemySpawnerController : MonoBehaviour
         StartCoroutine("UpdateWave");
     }
 
+    // Use a corourtine to determine when waves are spawned to improve performance
     IEnumerator UpdateWave()
     {
         while (true)
@@ -57,13 +56,14 @@ public class EnemySpawnerController : MonoBehaviour
         }
     }
 
+    // Spawn a new wave
     public void SpawnWave(Wave waveToSpawn)
     {
         // Spawn an enemy at a randomly selection waypoint
         for (int i = 0; i < waveToSpawn.enemiesPerWave; i++)
         {
             Vector3 spawnPosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
-            Instantiate(enemy, spawnPosition, Quaternion.identity);
+            Instantiate(waveToSpawn.enemy, spawnPosition, Quaternion.identity);
         }
 
         currentWave++;
