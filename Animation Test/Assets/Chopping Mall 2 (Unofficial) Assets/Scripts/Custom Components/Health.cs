@@ -24,6 +24,7 @@ public class Health : MonoBehaviour
         PM = gameObject.GetComponent<Player>();
         sounds = gameObject.GetComponent<AudioSource>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +45,7 @@ public class Health : MonoBehaviour
         }
     }
 
+    // Check if health has dropped below zero. If the target is unique, perform specific actions
     void CheckHealth()
     {
         if (health > healthMax)

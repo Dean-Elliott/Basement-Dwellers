@@ -18,17 +18,20 @@ public class TrackAnalytics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Track the amount of time spent in the level before death
         if (isFinishedSendingResults == false)
         {
             timeSpentInLevelBeforeDeath += Time.deltaTime;
         }
 
+        // If the player dies and results have not yet sent, report analytics
         if (Health.isPlayerDead == true && isFinishedSendingResults == false)
         {
             ReportAnalytics();
         }
     }
 
+    // Send data to the Unity dashboard
     public void ReportAnalytics()
     {
         AnalyticsResult waveNumberResult = Analytics.CustomEvent("Wave number before death", new Dictionary<string, object>
