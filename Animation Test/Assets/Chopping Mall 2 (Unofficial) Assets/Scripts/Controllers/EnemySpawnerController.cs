@@ -1,21 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
-
-[System.Serializable]
-public class Wave
-{
-    public int enemiesPerWave;
-    public GameObject enemy;
-}
 
 public class EnemySpawnerController : MonoBehaviour
 {
-    public Wave[] waves;
-    [HideInInspector]
-    public static int currentWave = 0;
-
     // Initialize all variables. Serialize where appropriate
     [SerializeField]
     private GameObject enemy;
@@ -31,42 +19,39 @@ public class EnemySpawnerController : MonoBehaviour
     [SerializeField]
     private Transform[] waypoints;
 
+    private float elapsingTimeBetweenSpawns;
+
     // Start is called before the first frame update
     void Start()
     {
-        TestEnemyController.enemiesKilled = 0;
-        currentWave = 0;
-
-        StartCoroutine("UpdateWave");
+        // Set the initial spawn time
+        elapsingTimeBetweenSpawns = timeBetweenSpawns;
     }
 
-    IEnumerator UpdateWave()
+    // Update is called once per frame
+    void Update()
     {
-        while (true)
+        // Get the the number of enemies in the scene
+        currentActiveEnemies = TestEnemyController.enemiesInScene;
+
+        // If the enemy count has not been maxed out, decrement the spawn timer
+        if (currentActiveEnemies < maximumActiveEnemies)
         {
-            // Get the the number of enemies in the scene
-            currentActiveEnemies = TestEnemyController.enemiesInScene;
+            elapsingTimeBetweenSpawns -= Time.deltaTime;
+        }
 
-            // If there are no enemies in the scene, spawn a new wave
-            if (currentActiveEnemies == 0)
-            {
-                SpawnWave(waves[currentWave]);
-            }
-
-            yield return new WaitForSeconds(0.5f);
+        // If the elapsing time between spawns reaches 0, spawn an enemy and reset the timer
+        if (elapsingTimeBetweenSpawns <= 0.0f)
+        {
+            SpawnEnemy();
+            elapsingTimeBetweenSpawns = timeBetweenSpawns;
         }
     }
 
-    public void SpawnWave(Wave waveToSpawn)
+    public void SpawnEnemy()
     {
         // Spawn an enemy at a randomly selection waypoint
-        for (int i = 0; i < waveToSpawn.enemiesPerWave; i++)
-        {
-            Vector3 spawnPosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
-            Instantiate(enemy, spawnPosition, Quaternion.identity);
-        }
-
-        currentWave++;
+        Vector3 spawnPosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+        Instantiate(enemy, spawnPosition, Quaternion.identity);
     }
-
 }

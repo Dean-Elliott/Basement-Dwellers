@@ -15,9 +15,6 @@ public class Health : MonoBehaviour
     private AudioSource sounds;
     [SerializeField]
     private AudioClip robotHurt;
-
-    public static bool isPlayerDead = false;
-
     private void Start()
     {
         health = healthMax;
@@ -40,9 +37,12 @@ public class Health : MonoBehaviour
                 sounds.PlayOneShot(robotHurt);
                 Bullet = collision.gameObject.GetComponent<Projectile>();
                 health = health - Bullet.Damage;
-                Destroy(collision.gameObject);
+                collision.gameObject.SetActive(false);
             }
+            
         }
+
+        
     }
 
     // Check if health has dropped below zero. If the target is unique, perform specific actions
@@ -55,22 +55,19 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 0;
-
-            if (this.gameObject.tag == "Target")
+            if(this.gameObject.tag == "Target")
             {
                 Destroy(this.gameObject);
             }
 
-            if (this.gameObject.tag == "Player")
+            if(this.gameObject.tag == "Player")
             {
                 Dead = true;
-                isPlayerDead = true;
                 animator.SetBool("IsDead", Dead);
                 PM.CanMove = false;
                 PM.CanLookAround = false;
             }
-
+            
         }
     }
 }
