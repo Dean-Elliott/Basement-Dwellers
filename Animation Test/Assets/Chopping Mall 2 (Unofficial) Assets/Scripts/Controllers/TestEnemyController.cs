@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 public class TestEnemyController : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class TestEnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgentComponent;
     private Health healthComponent;
 
-    // Count all enemies in the scene
+    // Count all enemies and enemy deaths in the scene
     public static int enemiesInScene;
+    public static int enemiesKilled;
 
     private bool messageHasPlayed = false;
     [SerializeField]
@@ -45,6 +47,8 @@ public class TestEnemyController : MonoBehaviour
     private float timeBetweenAttacks;
     private float elapsingTimeBetweenAttacks;
 
+    private bool isTravelling;
+
     private void Awake()
     {
         // Increment the number of enemies in the scene on spawn
@@ -63,7 +67,6 @@ public class TestEnemyController : MonoBehaviour
         timeBetweenAttacks = 1f / attacksPerSecond;
         elapsingTimeBetweenAttacks = timeBetweenAttacks;
 
-        
         if (waypoints[0] != null)
         {
             navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
@@ -96,7 +99,7 @@ public class TestEnemyController : MonoBehaviour
         {
             case EnemyStates.Travelling:
                 //Enemy is travelling to the next destination
-                StartCoroutine(Travel());
+                ActivateTravelCoroutine();
                 break;
 
             case EnemyStates.Attacking:
@@ -109,28 +112,44 @@ public class TestEnemyController : MonoBehaviour
                 navMeshAgentComponent.isStopped = true;
                 break;
         }
-
-
     }
+
+    private void ActivateTravelCoroutine()
+    {
+        if (isTravelling == false)
+        {
+            StartCoroutine(Travel());
+        }
+    }
+
 
     // Travel towards the player (uses a coroutine so as not to set the destination every frame)
     IEnumerator Travel()
     {
-        navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
-        yield return new WaitForSeconds(0.1f);
+        isTravelling = true;
+
+        while (true)
+        {
+            navMeshAgentComponent.SetDestination(waypoints[currentWaypoint].transform.position);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
-    
+
+
     // Attack target at set rate and damage value
     private void AttackTarget()
     {
+        isTravelling = false;
         StopCoroutine(Travel());
+
         navMeshAgentComponent.isStopped = true;
 
         elapsingTimeBetweenAttacks -= Time.deltaTime;
 
         if (elapsingTimeBetweenAttacks <= 0.0f)
         {
-            audioSourceComponent.PlayOneShot(playerHurt); //Play playerhurt sound
+            //Debug.Log("I'm attacking!");
+            audioSourceComponent.PlayOneShot(playerHurt);
             enemyHealthComponent.health -= attackDamage;
             elapsingTimeBetweenAttacks = timeBetweenAttacks;
         }
@@ -183,15 +202,20 @@ public class TestEnemyController : MonoBehaviour
     // If this game object collides with a projectile, reduce health
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.tag == "Bullet")
         {
             healthComponent.health--;
+            if (healthComponent.health <= 0)
+            {
+                OnHealthDepleted();
+            }
         }
     }
 
     // If health is depleted, destroy this game object
     public void OnHealthDepleted()
     {
+        enemiesKilled++;
         Destroy(gameObject);
     }
 

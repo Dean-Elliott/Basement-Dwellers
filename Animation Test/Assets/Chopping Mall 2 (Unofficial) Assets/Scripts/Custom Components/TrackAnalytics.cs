@@ -5,6 +5,7 @@ using UnityEngine.Analytics;
 
 public class TrackAnalytics : MonoBehaviour
 {
+    
     private bool isFinishedSendingResults;
     private float timeSpentInLevelBeforeDeath;
 
@@ -14,7 +15,7 @@ public class TrackAnalytics : MonoBehaviour
         timeSpentInLevelBeforeDeath = 0;
         isFinishedSendingResults = false;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -67,4 +68,5 @@ public class TrackAnalytics : MonoBehaviour
 
         isFinishedSendingResults = true;
     }
+    
 }
